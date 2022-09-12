@@ -1,0 +1,13 @@
+version: "2"
+services:
+  docker-telegram-notifier:
+    image: poma/docker-telegram-notifier
+    container_name: docker-telegram-notifier
+    environment:
+      - PUID=998
+      - PGID=100
+      - TELEGRAM_NOTIFIER_BOT_TOKEN=
+      - TELEGRAM_NOTIFIER_CHAT_ID=
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: always
