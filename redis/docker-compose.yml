@@ -1,11 +1,20 @@
-version: "3.2"
+version: "3.7"
+
 services:
-  redis:
-    image: "redis:alpine"
-    command: redis-server /usr/local/etc/redis/redis.conf --requirepass 290299xxaA@--dir /data
-    #command: redis-server --requirepass Mramra1234!@
-    ports:
-      - "6380:6379"
-    volumes:
-      - ./redis-data:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    redis:
+        image: redis:5.0
+        container_name: redis
+        command: bash -c "redis-server /usr/local/etc/redis/redis.conf --requirepass \"123456aA@\" && redis-server --dir /data"
+        restart: unless-stopped
+        environment:
+            - TZ=Asia/Ho_Chi_Minh
+        networks:
+            - local-network
+        ports:
+            - 6379:6379
+        volumes:
+            - ./data-redis:/data
+            - ./redis.conf:/usr/local/etc/redis/redis.conf
+networks:
+    local-network:
+      external: true
