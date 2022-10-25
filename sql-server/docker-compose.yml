@@ -9,4 +9,4 @@ services:
       - ./data:/var/lib/mssqlql/data
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=290299xxaA@
+      - SA_PASSWORD=123456aA@

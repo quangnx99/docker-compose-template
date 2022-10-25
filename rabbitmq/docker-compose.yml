@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: rabbitmq
+        restart: always
+        command: ["bash", "-c", "chmod 400 /var/lib/rabbitmq/.erlang.cookie; rabbitmq-server"]
+        environment:
+            - TZ=Asia/Ho_Chi_Minh
+            - RABBITMQ_DEFAULT_USER=admin
+            - RABBITMQ_DEFAULT_PASS=123456aA@
+            - RABBITMQ_ERLANG_COOKIE=Itd2902
+        networks:
+            - local-network
+        ports:
+            - 5672:5672
+            - 15672:15672
+        volumes:
+            - ./rabbitmq-etc:/etc/rabbitmq
+            - ./rabbitmq-lib:/var/lib/rabbitmq
+            - ./rabbitmq-log:/var/log/rabbitmq
+networks:
+    local-network:
+      external: true
