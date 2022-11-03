@@ -1,20 +1,35 @@
 version: '3.9'
 
 services:
-  mariadb:
-    container_name: mariadb
-    image: mariadb:10.7
+  mysql:
+    image: mysql:5.7.22
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
     ports:
-      - 3306:3306
-    volumes:
-      - ./mariadb:/var/lib/mysql
+      - "3306:3306"
     networks:
       - local-network
     environment:
-      - MYSQL_ROOT_PASSWORD=123456aA@
-      - MYSQL_PASSWORD=123456aA@
-      - MYSQL_USER=root
-      - MYSQL_DATABASE=Itd2902
+      MYSQL_DATABASE: mRemoteNG
+      MYSQL_ROOT_PASSWORD: 123456aA@
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    
+  # mariadb:
+  #   container_name: mariadb
+  #   image: mariadb:10.7
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - G:/My Drive/Devops/mRemoteNG/data:/var/lib/mysql
+  #   networks:
+  #     - local-network
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=123456aA@
+  #     - MYSQL_PASSWORD=123456aA@
+  #     - MYSQL_USER=root
+  #     - MYSQL_DATABASE=mRemoteNG
 
 networks:
     local-network:
