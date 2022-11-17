@@ -1,0 +1,17 @@
+version: "3.2"
+
+services:
+    keycloak:
+        container_name: keycloak
+        image: jboss/keycloak:latest
+        ports:
+            - "8080:8080"
+        environment:
+            - PROXY_ADDRESS_FORWARDING=true
+            - DB_VENDOR=mssql
+            - DB_USER=
+            - DB_PASSWORD=
+            - DB_ADDR=
+            - DB_DATABASE=
+            - DB_PORT=1436
+            - TZ=Asia/Ho_Chi_Minh
