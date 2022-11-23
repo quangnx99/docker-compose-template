@@ -1,0 +1,69 @@
+{
+  "name": "default",
+  "services": [
+    {
+      "id": "90c9972b-a999-4343-9d73-9408d13d3cf7",
+      "type": "Other",
+      "name": "Portainer",
+      "icon": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png",
+      "url": "https://localhost:9443",
+      "openedUrl": "https://localhost:9443"
+    }
+  ],
+  "settings": {
+    "searchUrl": "https://google.com/search?q=",
+    "widgetPosition": "left"
+  },
+  "modules": {
+    "Search Bar": {
+      "enabled": true
+    },
+    "docker": {
+      "enabled": false
+    },
+    "calendar": {
+      "enabled": true
+    },
+    "dashdot": {
+      "enabled": true,
+      "options": {
+        "cpuMultiView": {
+          "value": true
+        },
+        "storageMultiView": {
+          "value": true
+        },
+        "useCompactView": {
+          "value": true
+        },
+        "url": {
+          "value": ""
+        }
+      }
+    },
+    "date": {
+      "enabled": true
+    },
+    "overseerr": {
+      "enabled": false
+    },
+    "ping": {
+      "enabled": true
+    },
+    "search": {
+      "enabled": true
+    },
+    "torrents-status": {
+      "enabled": false
+    },
+    "dlspeed": {
+      "enabled": false
+    },
+    "usenet": {
+      "enabled": false
+    },
+    "weather": {
+      "enabled": false
+    }
+  }
+}
