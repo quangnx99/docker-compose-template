@@ -1,0 +1,17 @@
+version: "3"
+services:
+  memos:
+    container_name: "memos"
+    image: neosmemo/memos:latest
+    restart: always
+    ports:
+      - 5230:5230
+    volumes:
+      - /run/user/1000/gvfs/google-drive:host=gmail.com,user=adquang199x/1MpbEdY30ztjut-HwpZ7hNBxRnXZUjCmC/15iUoWe1tDlyAxb1HAPt6FlL_sBOeU44G/1Q2lBHboy32DlUNXSkc8knLv2TobybrpL:/var/opt/memos
+    networks:
+      - local-network
+volumes:
+  portainer_data:
+networks:
+  local-network:
+    external: true

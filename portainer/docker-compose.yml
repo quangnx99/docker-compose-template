@@ -1,19 +1,15 @@
-version: "2"
+version: '3'
+
 services:
   portainer:
-    container_name: "portainer"
     image: portainer/portainer-ee:latest
-    command: -H unix:///var/run/docker.sock
-    restart: always
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
     ports:
       - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    networks:
-      - local-network
-volumes:
-  portainer_data:
-networks:
-  local-network:
-    external: true
