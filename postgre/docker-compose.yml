@@ -4,31 +4,24 @@ services:
     postgres:
         image: postgres
         container_name: postgres
+        restart: always
+        deploy:
+            resources:
+                limits:
+                  cpus: '4.0'
+                  memory: 8G
         environment:
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_USER: postgres
-            # TZ: GMT
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=Janbox@2022
+            - TZ=Asia/Ho_Chi_Minh
         networks:
             - local-network
         ports:
             - 5432:5432
         volumes:
-            - postgres:/var/lib/postgresql/data
-    # postgres-admin:
-    #     image: dpage/pgadmin4
-    #     container_name: postgres-admin
-    #     depends_on:
-    #         - postgres
-    #     environment:
-    #         PGADMIN_DEFAULT_EMAIL: admin@admin.com
-    #         PGADMIN_DEFAULT_PASSWORD: P4ssW0rd!
-    #     networks:
-    #         - network
-    #     ports:
-    #         - 16543:80
+            - ./data-postgres:/var/lib/postgresql/data
+
+
 networks:
     local-network:
-        external: true
-volumes:
-    postgres:
-        driver: local
+      external: true
