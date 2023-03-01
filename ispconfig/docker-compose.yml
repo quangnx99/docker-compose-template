@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  ispconfig:
+    image: lspg/ispconfig
+    container_name: ispconfig
+    restart: always
+    ports:
+      - "20:20"
+      - "21:21"
+      - "443:443"
+      - "8080:8080"
+      # - "53:53"
+      - "2222:22"
