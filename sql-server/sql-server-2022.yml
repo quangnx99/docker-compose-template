@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=123456aA@
+    networks:
+      - network
+    ports:
+      - 1433:1433
+    volumes:
+      - mssql:/var/opt/mssql
+networks:
+  network:
+volumes:
+  mssql:
