@@ -2,3 +2,6 @@ docker run -d —name jenkins -p 8080:8080 -p 50000:50000 -v /Users/adqua/Deskto
 
 ##fix 403 error 
 sudo chown -R 1000 /Users/adqua/Desktop/jenkins
+
+
+nohup python3 chatgpt_telegram_bot.py & tail -f nohup.out
