@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+    postgres:
+        image: postgres
+        container_name: postgres
+        restart: always
+        deploy:
+            resources:
+                limits:
+                  cpus: '4.0'
+                  memory: 8G
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=Janbox@2022
+            - TZ=Asia/Ho_Chi_Minh
+        networks:
+            - local-network
+        ports:
+            - 5432:5432
+        volumes:
+            - ./data-postgres:/var/lib/postgresql/data
+
+
+networks:
+    local-network:
+      external: true

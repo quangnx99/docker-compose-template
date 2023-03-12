@@ -1,0 +1,18 @@
+sudo mkdir -p $PWD/elasticsearch/data
+sudo chmod 777 -R $PWD/elasticsearch/data
+
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 \
+  -v $PWD/elasticsearch/data:/usr/share/elasticsearch/data \
+  -e "discovery.type=single-node" \
+  --name elasticsearch \
+  docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
+
+=============
+Test when install success
+curl -X PUT http://localhost:9200/newindex
+
+curl -X GET http://localhost:9200/newindex
+
+curl -X GET http://localhost:9200/newindex?pretty
+
+test when install success

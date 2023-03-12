@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  master:
+    container_name: "citus_master"
+    restart: always
+    image: "citusdata/citus:11.1.5"
+    ports: ["5432:5432"]
+    labels: ["com.citusdata.role=Master"]
+    environment: &AUTH
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+  worker:
+    image: "citusdata/citus:11.1.5"
+    restart: always
+    deploy:
+      replicas: 2
+    labels: ["com.citusdata.role=Worker"]
+    depends_on: [manager]
+    environment: *AUTH
+    command: "/wait-for-manager.sh"
+    volumes:
+      - healthcheck-volume:/healthcheck
+  manager:
+    container_name: "citus_manager"
+    restart: always
+    image: "citusdata/membership-manager:0.3.0"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - healthcheck-volume:/healthcheck
+    depends_on: [master]
+    environment: *AUTH
+    
+  
+  # redis:
+  #   image: redis:7.0.5-alpine
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - 6379:6379
+        
+  # rabbitmq:
+  #   image: masstransit/rabbitmq:latest
+  #   container_name: rabbitmq
+  #   restart: always
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=guest
+  #     - RABBITMQ_DEFAULT_PASS=guest
+  #     - RABBITMQ_ERLANG_COOKIE=guest
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+
+volumes:
+  healthcheck-volume:
+
+networks:
+  default:
+    name: local-network
+    external: true

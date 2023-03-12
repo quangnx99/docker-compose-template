@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
         container_name: elasticsearch
         restart: always
         logging:
@@ -19,9 +19,9 @@ services:
             - 9200:9200
             - 9300:9300
         volumes:
-            - ./elasticsearch:/usr/share/elasticsearch/data
+            - ./elasticsearch/data:/usr/share/elasticsearch/data
     kibana:
-        image: docker.elastic.co/kibana/kibana:7.8.0
+        image: docker.elastic.co/kibana/kibana:7.17.0
         container_name: kibana
         restart: always
         depends_on:
