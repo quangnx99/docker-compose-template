@@ -1,22 +1,33 @@
 version: "3.7"
 
 services:
-  mongo:
-    image: mongo
-    container_name: mongo
-    environment:
-      MONGO_INITDB_DATABASE: db
-      MONGO_INITDB_ROOT_PASSWORD: 123456aA@
-      MONGO_INITDB_ROOT_USERNAME: admin
-    networks:
-      - my-network
-    ports:
-      - 27017:27017
-    volumes:
-      - mongo:/data/db
+    mongo:
+        image: mongo
+        command: ['--logpath', '/var/log/mongodb/server1.log']
+        deploy:
+            resources:
+                limits:
+                  cpus: '13.0'
+                  memory: 10G
+        logging:
+            driver: "json-file"
+            options:
+             max-size: "100m"
+        container_name: mongo
+        restart: always
+        environment:
+            - TZ=Asia/Ho_Chi_Minh
+            - MONGO_INITDB_DATABASE=db
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=ichiba2020
+        networks:
+            - local-network
+        ports:
+            - 27017:27017
+        volumes:
+            - ./data:/data/db
+            #- ./log/server1.log:/var/log/mongodb/server1.log
+
 networks:
-  my-network:
-    external: true
-volumes:
-  mongo:
-    driver: local
+    local-network:
+      external: true
