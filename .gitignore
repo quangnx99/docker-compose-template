@@ -1,3 +1,4 @@
 /portainer/portainer-data
 /redis/data-redis
 sql-server/*
+/guacamole/postgres
