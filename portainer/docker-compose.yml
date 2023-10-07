@@ -9,8 +9,8 @@ services:
       - no-new-privileges:true
     volumes:
  #     - /etc/localtime:/etc/localtime:ro #For Linux
-      - //var/run/docker.sock:/var/run/docker.sock:ro # For Window
-      # - /var/run/docker.sock:/var/run/docker.sock:ro # For Linux
+      # - //var/run/docker.sock:/var/run/docker.sock:ro # For Window
+      - /var/run/docker.sock:/var/run/docker.sock:ro # For Linux
 
       - ./portainer-data:/data
     ports:
