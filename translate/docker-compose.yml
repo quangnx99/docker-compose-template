@@ -1,0 +1,10 @@
+version: "3"
+services:
+  libretranslate:
+    container_name: libretranslate
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5050:5000"

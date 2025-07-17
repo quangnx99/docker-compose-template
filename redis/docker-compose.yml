@@ -4,17 +4,17 @@ services:
     redis:
         image: redis:5.0
         container_name: redis
-        command: bash -c "redis-server /usr/local/etc/redis/redis.conf --requirepass \"123456aA@\" && redis-server --dir /data"
+        # command: bash -c "redis-server /usr/local/etc/redis/redis.conf --requirepass \"123456aA@\" && redis-server --dir /data"
         restart: unless-stopped
         environment:
             - TZ=Asia/Ho_Chi_Minh
         networks:
-            - local-network
+            - local_network
         ports:
             - 6379:6379
-        volumes:
-            - ./data-redis:/data
-            - ./redis.conf:/usr/local/etc/redis/redis.conf
+#         volumes:
+#             - ./data-redis:/data
+#             - ./redis.conf:/usr/local/etc/redis/redis.conf
 networks:
-    local-network:
+    local_network:
       external: true

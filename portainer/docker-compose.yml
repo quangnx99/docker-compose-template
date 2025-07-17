@@ -12,6 +12,6 @@ services:
       - //var/run/docker.sock:/var/run/docker.sock:ro # For Window
       # - /var/run/docker.sock:/var/run/docker.sock:ro # For Linux
 
-      - ./portainer-data:/data
+      # - ./portainer-data:/data
     ports:
       - 9000:9000
