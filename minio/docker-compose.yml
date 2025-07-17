@@ -1,0 +1,19 @@
+version: '3.8'
+ 
+services:
+  minio:
+    image: minio/minio:RELEASE.2024-08-17T01-24-54Z
+    container_name: minio-server
+    ports:
+      - "9000:9000"   # Cổng S3 API
+      - "9001:9001"   # Cổng giao diện web
+    environment:
+      MINIO_ROOT_USER: admin     # Username quản trị
+      MINIO_ROOT_PASSWORD: 290299xxaA@ # Password quản trị (tối thiểu 8 ký tự)
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+ 
+volumes:
+  minio_data:
